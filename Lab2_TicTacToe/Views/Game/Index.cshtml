@@ -1,0 +1,27 @@
+﻿@using System.Net.Mime
+@using Lab2_TicTacToe.Controllers
+@using Lab2_TicTacToe.Models
+@model Lab2_TicTacToe.Models.GameModel
+@{ 
+    ViewBag.Title = "Index";
+}
+
+<h2>Crappy Tic Tac Toe</h2>
+<form action="" method="post">
+    <table>
+        @for (int i = 0; i < Tiles.TileCoordinates.Count-1; i+=3)
+        {
+            <tr>
+                @for (int y = i; y < i+3; y++)
+                {
+                    <td>
+                        <input type="submit" class="ButtonClass" name="send" id="@Tiles.TileCoordinates[y].ID" value="@Tiles.TileCoordinates[y].sign"/>
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+
+    <input type="submit" name="send" value="Reset Game" />
+</form>
+<p>@ViewBag.Message</p>

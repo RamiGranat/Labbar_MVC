@@ -1,0 +1,36 @@
+﻿@using System.Net.Mime
+@using Microsoft.Ajax.Utilities
+
+@{
+    ViewBag.Title = "Game";
+}
+
+<h2>@ViewBag.Number Game</h2>
+@{ 
+    var totalMessage = "";
+    var message = "";
+    var currentNum = 0;
+    var input = Request["text1"];
+    if (IsPost)
+    {
+        totalMessage = "Total = " + ViewBag.Number;
+        message = ViewBag.Message;
+
+    }
+}
+<!DOCTYPE html>
+<html>
+<body style="background-color: beige; font-family: Verdana, Arial;">
+    <form action="" method="post">
+        <p>
+            <label for="text1">Enter Number:</label><br />
+            <input type="text" name="text1" />
+        </p>
+        <p><input type="submit" value="Add"/></p>
+    </form>
+    <p>@totalMessage</p>
+    <p>@message</p>
+    <p>Du skrev: @input</p>
+</body>
+</html>
+
