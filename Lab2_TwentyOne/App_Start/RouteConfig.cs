@@ -14,6 +14,16 @@ namespace Lab2_TwentyOne
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Game",
+                url: "TwentyOne/{action}/{id}",
+                defaults: new { controller = "TwentyOne", action = "Game", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Fix",
+                url: "View/{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

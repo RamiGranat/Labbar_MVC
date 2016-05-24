@@ -1,36 +1,25 @@
 ﻿@using System.Net.Mime
 @using Microsoft.Ajax.Utilities
+@using Lab2_TwentyOne.Models;
 
 @{
     ViewBag.Title = "Game";
 }
 
-<h2>@ViewBag.Number Game</h2>
 @{ 
-    var totalMessage = "";
-    var message = "";
-    var currentNum = 0;
-    var input = Request["text1"];
-    if (IsPost)
-    {
-        totalMessage = "Total = " + ViewBag.Number;
-        message = ViewBag.Message;
-
-    }
-}
-<!DOCTYPE html>
-<html>
-<body style="background-color: beige; font-family: Verdana, Arial;">
-    <form action="" method="post">
+    <form action="" method="POST">
+        <p>Current Number is: @TwentyOneModel.CurrentNumber</p>
         <p>
-            <label for="text1">Enter Number:</label><br />
-            <input type="text" name="text1" />
+            <input type="radio" id="radio1" name="choice" value="1" />
+            <label>1</label>
         </p>
-        <p><input type="submit" value="Add"/></p>
+        <p>
+            <input type="radio" id="radio2" name="choice" value="2" />
+            <label>2</label>
+         </p>
+        <p>
+            <input type="submit" value="choose" />
+        </p>
+        <h3>@ViewBag.result</h3>
     </form>
-    <p>@totalMessage</p>
-    <p>@message</p>
-    <p>Du skrev: @input</p>
-</body>
-</html>
-
+}

@@ -1,0 +1,31 @@
+﻿@model Lab4._1.Models.TwentyOneAjaxModel
+@using System.Activities.Expressions
+@using Lab4._1.Models
+@using Lab4._1.Controllers
+@{
+    ViewBag.Title = "Game";
+}
+
+<h2>Game</h2>
+
+    @using (Ajax.BeginForm(
+                        actionName: "Game",
+                        controllerName: "TwentyOneAjax",
+                        ajaxOptions: new AjaxOptions { UpdateTargetId = "NumberContainer", InsertionMode=InsertionMode.Replace }
+                        ))
+    {
+        <div id="NumberContainer">Current Number is: @TwentyOneAjaxModel.CurrentNumber</div>
+        <p>
+            <input type="radio" id="radio1" name="choice" value="1" />
+            <label>1</label>
+        </p>
+        <p>
+            <input type="radio" id="radio2" name="choice" value="2" />
+            <label>2</label>
+        </p>
+        <p>
+            <input type="submit" value="choose" />
+        </p>
+        <h3>@ViewBag.result</h3>
+    }
+

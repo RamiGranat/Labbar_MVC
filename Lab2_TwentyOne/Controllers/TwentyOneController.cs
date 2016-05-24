@@ -17,46 +17,26 @@ namespace Lab2_TwentyOne.Controllers
         {
             return View();
         }
-
-        int num = 0;
-        int sum = 0;
-
         public ActionResult Game()
         {
-            bool tryParse = int.TryParse(Request["text1"], out num);
-            if (tryParse && num <= 2 && num > 0 && numberModel.num <= 21)
+            ViewBag.result = string.Empty;
+            TwentyOneModel.CurrentNumber = 0;
+            TwentyOneModel.SetStartPlayer();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Game(string buttonValue)
+        {
+            int choice;
+            if (Request["choice"] != null)
             {
-
-                numberModel.num += num;
-                if (numberModel.num == 21)
-                {
-                    ViewBag.Message = "You won";
-                    numberModel.num = 0;
-                }
-                else if (numberModel.num > 21)
-                {
-                    ViewBag.Message = "You lost";
-                }
-                ViewBag.number = numberModel.num;
-
-
+                choice = int.Parse(Request["choice"]);
+                TwentyOneAjaxModel.CurrentNumber += choice;
+                ViewBag.result = TwentyOneAjaxModel.HandleGameResults();
+                return View();
             }
             else
-            {
-                ViewBag.Message = "not valid data";
-                ViewBag.number = numberModel.num = 0;
-            }
-
-            Random rnd = new Random();
-            int computerNumber = rnd.Next(1, 2);
-            numberModel.num += computerNumber;
-            ViewBag.Message = "Datorn skrev:" + computerNumber.ToString();
-
-            if (numberModel.num == 21)
-            {
-                ViewBag.Message = "Datorn förlorade";
-                numberModel.num = 0;
-            }
+                ViewBag.result = TwentyOneAjaxModel.ErroMessage("You must choose an option!");
             return View();
         }
     }
